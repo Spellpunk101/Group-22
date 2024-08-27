@@ -1,1 +1,3 @@
-# Group-22
+# COP 4331
+# Group 22
+# Small Project
