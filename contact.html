@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Manager</title>
+    <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #daeaf6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .top-right-menu {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .dropdown {
+            display: none;
+            position: absolute;
+            top: 50px;
+            right: 15px;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 3;
+            min-width: 150px;
+        }
+
+        .dropdown a {
+            padding: 12px 16px;
+            text-decoration: none;
+            display: block;
+            color: black;
+        }
+
+        .dropdown a:hover {
+            background-color: #ddd;
+        }
+
+        .main-content {
+            width: 80%;
+            max-width: 700px;
+            text-align: center;
+            margin-left: 0;
+        }
+
+        .header {
+            font-size: 40px;
+            text-align: center;
+            padding: 10px;
+        }
+
+        .user-info, .contact-list {
+            background-color: #fff;
+            padding: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .contact-list ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        .contact-list li {
+            background-color: #f9f9f9;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        .contact-button {
+            background-color: #04AA6D;
+            color: white;
+            font-size: 20px;
+            border: none;
+            padding: 10px;
+            width: 100%;
+            text-align: left;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px 0;
+        }
+
+        .contact-button:hover {
+            background-color: #008CBA;
+        }
+
+        .input-bars {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+
+        .contact-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .hamburger {
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        .contact-dropdown {
+            display: none;
+            position: absolute;
+            background-color: white;
+            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            z-index: 3;
+            min-width: 150px;
+            margin-top: 5px;
+        }
+
+        .contact-dropdown a {
+            padding: 10px;
+            display: block;
+            text-decoration: none;
+            color: black;
+        }
+
+        .contact-dropdown a:hover {
+            background-color: #ddd;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Logging out -->
+    <div class="top-right-menu" onclick="toggleDropdown()">⋮</div>
+    <div class="dropdown" id="dropdown">
+        <a href="#">Log out</a>
+    </div>
+
+    <div class="main-content">
+        <header class="header">
+            Contact Manager
+        </header>
+
+        <div class="user-info">
+            <h2>Your Account</h2>
+            <p><strong>Name:</strong> John Doe</p>
+            <p><strong>Email:</strong> xyz@gmail.com</p>
+        </div>
+
+        <div class="contact-list">
+            <div class="contact-header">
+                <h2>Your Contacts</h2>
+                <div class="hamburger" onclick="toggleContactDropdown()">☰</div>
+            </div>
+            <div class="contact-dropdown" id="contactDropdown">
+                <a href="#">Add Contact</a>
+                <a href="#">Delete Contact</a>
+            </div>
+            <input class="input-bars" type="text" placeholder="Search contacts" oninput="filterContacts()">
+            <ul id="contactList">
+                <li>
+                    <button class="contact-button">Alice One</button>
+                </li>
+                <li>
+                    <button class="contact-button">Bob Two</button>
+                </li>
+                <li>
+                    <button class="contact-button">Charlie Three</button>
+                </li>
+                <li>
+                    <button class="contact-button">Dani Four</button>
+                </li>
+            </ul>
+        </div>
+    </div>
+
+    <!-- JavaScript to Toggle Dropdown and Filter Contacts -->
+    <script>
+        function toggleDropdown() {
+            var dropdown = document.getElementById("dropdown");
+            dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
+        }
+
+        // Toggle contact-specific dropdown
+        function toggleContactDropdown() {
+            var contactDropdown = document.getElementById("contactDropdown");
+            contactDropdown.style.display = contactDropdown.style.display === "block" ? "none" : "block";
+        }
+
+        // Search contacts
+        function filterContacts() {
+            var input = document.querySelector('.input-bars').value.toLowerCase();
+            var contacts = document.querySelectorAll('#contactList li');
+
+            contacts.forEach(function(contact) {
+                var text = contact.textContent || contact.innerText;
+                contact.style.display = text.toLowerCase().indexOf(input) > -1 ? '' : 'none';
+            });
+        }
+
+        // Close the dropdown if clicking outside of it
+        window.onclick = function(event) {
+            if (!event.target.matches('.hamburger') && !event.target.matches('.top-right-menu')) {
+                var dropdowns = document.getElementsByClassName("dropdown");
+                for (var i = 0; i < dropdowns.length; i++) {
+                    var openDropdown = dropdowns[i];
+                    if (openDropdown.style.display === "block") {
+                        openDropdown.style.display = "none";
+                    }
+                }
+
+                var contactDropdowns = document.getElementsByClassName("contact-dropdown");
+                for (var i = 0; i < contactDropdowns.length; i++) {
+                    var openContactDropdown = contactDropdowns[i];
+                    if (openContactDropdown.style.display === "block") {
+                        openContactDropdown.style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
+</body>
+</html>

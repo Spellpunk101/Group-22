@@ -2,15 +2,17 @@
 <html>
     <head>
         <title>Small Project</title>
-        <link href="styles.css" rel="stylesheet">
+        <script type="text/javascript" src="js/code.js"></script>
+        <link href="css/styles.css" rel="stylesheet">
     </head>
     <body>
         <h1 class="header">COP 4331 Small Project</h1>
         <div class="center-text">
             <p class="inner-title">Please Log In</p>
-            <input class="input-bars" type="text" placeholder="Username">
-            <input class="input-bars" type="text" placeholder="Password">
-            <button class="buttons">Log In</button>
+            <input id="loginName" class="input-bars" type="text" placeholder="Username">
+            <input id="loginPassword" class="input-bars" type="text" placeholder="Password">
+            <button id="loginButton" class="buttons" onclick="doLogin();">Log In</button>
+            <span id="loginResult"></span>
         </div>
     </body>
 </html>
