@@ -131,6 +131,21 @@ function addUser()
             if (this.readyState == 4 && this.status == 200) 
             {
                 document.getElementById("userAddResult").innerHTML = "User has been added";
+		let jsonObject = JSON.parse( xhr.responseText );
+		userId = jsonObject.id;
+		
+		if( userId < 1 )
+		{		
+			document.getElementById("loginResult").innerHTML = "User/Password combination incorrect";
+			return;
+		}
+		
+		firstName = jsonObject.firstName;
+		lastName = jsonObject.lastName;
+		
+		saveCookie();
+		
+		window.location.href = "contact.html"; 
             }
         };
         xhr.send(jsonPayload);
