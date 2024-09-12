@@ -13,27 +13,12 @@
 	} 
 	else
 	{
-		// Check if username already exists
-		$stmt = $conn->prepare("SELECT ID FROM Users WHERE Username=?");
-		$stmt->bind_param("s", $username);
+		$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Username, Password) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $firstname, $lastname, $username, $password);
 		$stmt->execute();
-		$result = $stmt->get_result();
-		if ($result->num_rows > 0) 
-		{
-			$stmt->close();
-			$conn->close();
-			returnWithError("Username already exists");
-		}
-		else
-		{
-			// Insert the new user
-			$stmt = $conn->prepare("INSERT into Users (FirstName, LastName, Username, Password) VALUES(?,?,?,?)");
-			$stmt->bind_param("ssss", $firstname, $lastname, $username, $password);
-			$stmt->execute();
-			$stmt->close();
-			$conn->close();
-			returnWithError("");
-		}
+		$stmt->close();
+		$conn->close();
+		returnWithError("");
 	}
 
 	function getRequestInfo()
