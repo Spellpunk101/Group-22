@@ -115,7 +115,7 @@ function addUser()
     let newUsername = document.getElementById("usernameText").value;
     let newPassword = document.getElementById("passwordText").value;
     document.getElementById("userAddResult").innerHTML = "";
-console.log(newFirstName + newLastName + newUsername + newPassword);
+
     let tmp = {firstname:newFirstName, lastname:newLastName, username:newUsername, password:newPassword};
     let jsonPayload = JSON.stringify( tmp );
 
