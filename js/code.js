@@ -131,7 +131,7 @@ function addUser()
             if (this.readyState == 4 && this.status == 200) 
             {
                 document.getElementById("userAddResult").innerHTML = "User has been added";
-		window.location.href = "login.html"; 
+				window.location.href = "login.html"; 
             }
         };
         xhr.send(jsonPayload);
@@ -165,6 +165,7 @@ function addContact()
             if (this.readyState == 4 && this.status == 200) 
             {
                 document.getElementById("contactAddResult").innerHTML = "Contact has been added";
+				window.location.href = "contact.html"; 
             }
         };
         xhr.send(jsonPayload);
@@ -174,6 +175,39 @@ function addContact()
         document.getElementById("contactAddResult").innerHTML = err.message;
     }
     
+}
+
+function deleteContact() {
+	let contactName = document.getElementById("nameText").value;
+    let contactPhone = document.getElementById("phoneText").value;
+    let contactEmail = document.getElementById("emailText").value;
+    document.getElementById("contactDeleteResult").innerHTML = "";
+
+	let tmp = {name:contactName, phone:contactPhone, email:contactEmail};
+    let jsonPayload = JSON.stringify( tmp );
+
+	let url = urlBase + '/DeleteContact.' + extension;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("DELETE", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+
+	try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+                document.getElementById("contactDeleteResult").innerHTML = "Contact has been deleted";
+				window.location.href = "contact.html"; 
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        document.getElementById("contactDeleteResult").innerHTML = err.message;
+    }
 }
 
 function addColor()
