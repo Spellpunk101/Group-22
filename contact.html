@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Manager</title>
+    <title>Small Project</title>
     <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
     <style>
         body {
@@ -100,7 +100,10 @@
 
         .input-bars {
             width: 100%;
-            padding: 10px;
+            padding-top: 10px;
+            padding-bottom: 10px;
+            padding-left: 7px;
+            padding-right: 0px;
             margin-bottom: 10px;
             border-radius: 5px;
             border: 1px solid #ddd;
@@ -164,8 +167,8 @@
                 <div class="hamburger" onclick="toggleContactDropdown()">☰</div>
             </div>
             <div class="contact-dropdown" id="contactDropdown">
-                <a href="#">Add Contact</a>
-                <a href="#">Delete Contact</a>
+                <a href="addContact.html">Add Contact</a>
+                <a href="deleteContact.html">Delete Contact</a>
             </div>
             <input class="input-bars" type="text" placeholder="Search contacts" oninput="filterContacts()">
             <ul id="contactList">
