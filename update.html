@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Contact</title>
+    <style>
+        body {
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #daeaf6;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        h2 {
+            margin-top: 0;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0 10px 0;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        button {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 100%;
+        }
+        button:hover {
+            background-color: #008CBA;
+        }
+        .toast {
+            display: none;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.2);
+            z-index: 1000;
+            cursor: pointer; 
+            opacity: 0;
+            transform: translateY(20px); 
+            transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+        }
+        .toast.show {
+            display: block;
+            opacity: 1;
+            transform: translateY(0); 
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Update Contact</h2>
+        <form id="updateForm">
+            <input type="text" id="name" placeholder="Name">
+            <input type="email" id="email" placeholder="Email">
+            <input type="tel" id="phone" placeholder="Phone">
+            <button type="button" onclick="updateContact()">Update</button>
+        </form>
+    </div>
+
+    <div id="toast" class="toast" onclick="toastClickHandler()">Toast</div>
+
+    <script>
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => {
+                toast.classList.remove('show');
+            }, 2000); 
+        }
+
+        function updateContact() {
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const phone = document.getElementById('phone').value;
+
+            if (name && email && phone) {
+                showToast("Contact updated.");
+                setTimeout(() => {
+                    window.location.href = "contact.html"; 
+                }, 2000); 
+            } else {
+                showToast("Please fill out all fields.");
+            }
+        }
+
+        function toastClickHandler() {
+            alert("Toast clicked!");
+        }
+    </script>
+
+</body>
+</html>

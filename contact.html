@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Small Project</title>
-    <link rel="stylesheet" href="styles.css"> <!-- Linking the external CSS file -->
     <style>
         body {
             font-family: "Segoe UI", Arial, sans-serif;
@@ -16,6 +15,7 @@
             align-items: center;
             height: 100vh;
             overflow-x: hidden;
+            position: relative;
         }
 
         .top-right-menu {
@@ -113,6 +113,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
+            position: relative;
         }
 
         .hamburger {
@@ -123,11 +124,12 @@
         .contact-dropdown {
             display: none;
             position: absolute;
+            top: 35px;
+            right: 0;
             background-color: white;
-            box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
             z-index: 3;
             min-width: 150px;
-            margin-top: 5px;
         }
 
         .contact-dropdown a {
@@ -140,14 +142,140 @@
         .contact-dropdown a:hover {
             background-color: #ddd;
         }
+
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 4;
+            padding-top: 100px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0, 0, 0, 0.4);
+        }
+
+        .modal-content {
+            background-color: white;
+            margin: auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+            max-width: 400px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            text-align: center;
+        }
+
+        .modal-header {
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .modal-body {
+            margin-bottom: 20px;
+        }
+
+        .modal-footer {
+            display: flex;
+            justify-content: space-between;
+        }
+
+        .modal-footer button {
+            background-color: #04AA6D;
+            color: white;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: 48%;
+        }
+
+        .modal-footer button:hover {
+            background-color: #008CBA;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+        }
+
+        .toast {
+            display: none;
+            position: fixed;
+            z-index: 5;
+            left: 50%;
+            bottom: 20px;
+            transform: translateX(-50%);
+            background-color: #333;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            padding: 20px;
+            box-shadow: 0px 8px 16px rgba(0,0,0,0.2);
+            width: 300px;
+            cursor: pointer;
+        }
+
+        .toast.show {
+            display: block;
+        }
+
+        .toast .toast-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .toast button {
+            background-color: #04AA6D;
+            color: white;
+            border: none;
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+
+        .toast button:hover {
+            background-color: #008CBA;
+        }
+
+        .toast .no {
+            background-color: #f44336;
+        }
+
+        .toast .no:hover {
+            background-color: #d32f2f;
+        }
+
+        .backdrop {
+            display: none;
+            position: fixed;
+            z-index: 4;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+        }
     </style>
 </head>
 <body>
 
-    <!-- Logging out -->
+    <div id="backdrop" class="backdrop"></div>
+
     <div class="top-right-menu" onclick="toggleDropdown()">⋮</div>
     <div class="dropdown" id="dropdown">
-        <a href="#">Log out</a>
+        <a href="index.html">Log out</a>
     </div>
 
     <div class="main-content">
@@ -158,79 +286,135 @@
         <div class="user-info">
             <h2>Your Account</h2>
             <p><strong>Name:</strong> John Doe</p>
-            <p><strong>Email:</strong> xyz@gmail.com</p>
         </div>
 
         <div class="contact-list">
             <div class="contact-header">
                 <h2>Your Contacts</h2>
                 <div class="hamburger" onclick="toggleContactDropdown()">☰</div>
+                <div class="contact-dropdown" id="contactDropdown">
+                    <a href="addContact.html">Add Contact</a>
+                    <a href="deleteContact.html">Delete Contact</a>
+                </div>
             </div>
-            <div class="contact-dropdown" id="contactDropdown">
-                <a href="addContact.html">Add Contact</a>
-                <a href="deleteContact.html">Delete Contact</a>
-            </div>
+
             <input class="input-bars" type="text" placeholder="Search contacts" oninput="filterContacts()">
             <ul id="contactList">
-                <li>
+                <li onclick="showModal('Alice One', 'alice@example.com', '123-456-7890')">
                     <button class="contact-button">Alice One</button>
                 </li>
-                <li>
+                <li onclick="showModal('Bob Two', 'bob@example.com', '987-654-3210')">
                     <button class="contact-button">Bob Two</button>
                 </li>
-                <li>
+                <li onclick="showModal('Charlie Three', 'charlie@example.com', '555-555-5555')">
                     <button class="contact-button">Charlie Three</button>
                 </li>
-                <li>
+                <li onclick="showModal('Dani Four', 'dani@example.com', '111-222-3333')">
                     <button class="contact-button">Dani Four</button>
                 </li>
             </ul>
         </div>
     </div>
 
-    <!-- JavaScript to Toggle Dropdown and Filter Contacts -->
+    <!-- Modal for viewing contact details -->
+    <div id="contactModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeModal()">&times;</span>
+            <div class="modal-header">
+                <h2 id="modalName"></h2>
+            </div>
+            <div class="modal-body">
+                <p><strong>Email:</strong> <span id="modalEmail"></span></p>
+                <p><strong>Phone:</strong> <span id="modalPhone"></span></p>
+            </div>
+            <div class="modal-footer">
+                <button onclick="updateContact()">Edit</button>
+                <button onclick="confirmDeleteContact()">Delete</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Toast notification for delete confirmation -->
+    <div id="toast" class="toast">
+        <div class="toast-content">
+            <span>Are you sure you would like to delete this contact?</span>
+            <div>
+                <button onclick="deleteContact()">Yes</button>
+                <button class="no" onclick="hideToast()">No</button>
+            </div>
+        </div>
+    </div>
+
     <script>
+        // Variables to hold current contact information
+        let currentContact = {
+            name: '',
+            email: '',
+            phone: ''
+        };
+    
+        function showModal(name, email, phone) {
+            currentContact = { name, email, phone };
+            document.getElementById('modalName').textContent = name;
+            document.getElementById('modalEmail').textContent = email;
+            document.getElementById('modalPhone').textContent = phone;
+            document.getElementById('contactModal').style.display = "block";
+            document.getElementById('backdrop').style.display = "block";
+        }
+    
+        function closeModal() {
+            document.getElementById('contactModal').style.display = "none";
+            document.getElementById('backdrop').style.display = "none";
+        }
+    
+        function updateContact() {
+            window.location.href = `update.html?name=${encodeURIComponent(currentContact.name)}&email=${encodeURIComponent(currentContact.email)}&phone=${encodeURIComponent(currentContact.phone)}`;
+        }
+    
+        function confirmDeleteContact() {
+            var toast = document.getElementById("toast");
+            toast.classList.add("show");
+            document.getElementById('backdrop').style.display = "block"; 
+        }
+    
+        function hideToast() {
+            var toast = document.getElementById("toast");
+            toast.classList.remove("show");
+            document.getElementById('backdrop').style.display = "none"; 
+        }
+    
+        function deleteContact() {
+            hideToast();
+            alert("Contact deleted.");
+            location.reload(); // Refresh the page after deletion
+        }
+    
+        window.onclick = function(event) {
+            var modal = document.getElementById('contactModal');
+            var toast = document.getElementById('toast');
+            if (event.target == modal || event.target == toast) {
+                closeModal();
+                hideToast();
+            }
+        }
+    
         function toggleDropdown() {
             var dropdown = document.getElementById("dropdown");
             dropdown.style.display = dropdown.style.display === "block" ? "none" : "block";
         }
-
-        // Toggle contact-specific dropdown
+    
         function toggleContactDropdown() {
             var contactDropdown = document.getElementById("contactDropdown");
             contactDropdown.style.display = contactDropdown.style.display === "block" ? "none" : "block";
         }
-
-        // Search contacts
+    
         function filterContacts() {
             var input = document.querySelector('.input-bars').value.toLowerCase();
             var contacts = document.querySelectorAll('#contactList li');
-
             contacts.forEach(function(contact) {
                 var text = contact.textContent || contact.innerText;
                 contact.style.display = text.toLowerCase().indexOf(input) > -1 ? '' : 'none';
             });
-        }
-
-        // Close the dropdown if clicking outside of it
-        window.onclick = function(event) {
-            if (!event.target.matches('.hamburger') && !event.target.matches('.top-right-menu')) {
-                var dropdowns = document.getElementsByClassName("dropdown");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.style.display === "block") {
-                        openDropdown.style.display = "none";
-                    }
-                }
-
-                var contactDropdowns = document.getElementsByClassName("contact-dropdown");
-                for (var i = 0; i < contactDropdowns.length; i++) {
-                    var openContactDropdown = contactDropdowns[i];
-                    if (openContactDropdown.style.display === "block") {
-                        openContactDropdown.style.display = "none";
-                    }
-                }
-            }
         }
     </script>
 </body>
