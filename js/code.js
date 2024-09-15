@@ -150,7 +150,7 @@ function addContact()
     let newEmail = document.getElementById("emailText").value;
     document.getElementById("contactAddResult").innerHTML = "";
 
-    let tmp = {name:newName, phone:newPhone, email:newEmail};
+    let tmp = {name:newName, phone:newPhone, email:newEmail, userID:userID};
     let jsonPayload = JSON.stringify( tmp );
 
     let url = urlBase + '/AddContact.' + extension;
