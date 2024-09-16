@@ -4,7 +4,7 @@
 	$name = $inData["name"];
 	$phone = $inData["phone"];
 	$email = $inData["email"];
-	$userID = $inData["userID"];
+	$userId = $inData["userId"];
 
 	$conn = new mysqli("localhost", "Chris", "ChrisB", "contactManager");
 	if ($conn->connect_error) 
@@ -13,8 +13,8 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?)");
-		$stmt->bind_param("ssss", $name, $phone, $email, $userID);
+		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserId) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $name, $phone, $email, $userId);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
