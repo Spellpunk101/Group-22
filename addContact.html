@@ -12,12 +12,7 @@
             <input id="nameText" class="input-bars" type="text" placeholder="Name">
             <input id="phoneText" class="input-bars" type="text" placeholder="Phone Number">
             <input id="emailText" class="input-bars" type="text" placeholder="Email">
-            <button class="buttons" onclick="openPopup();">Add Contact</button>
-            <div class="popup" id="popup">
-                <h2>Are you sure you want to add this contact?</h2>
-                <button id="addContactButton" class="button-yes" onclick="addContact();">Yes</button>
-                <button class="button-no" onclick="closePopup();">No</button>
-            </div>
+            <button id="addContactButton" class="buttons" onclick="addContact();">Add Contact</button>
         </div>
         <script>
             let popup = document.getElementById("popup");
