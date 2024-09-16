@@ -164,15 +164,14 @@ function addContact()
         {
             if (this.readyState == 4 && this.status == 200) 
             {
-                document.getElementById("contactAddResult").innerHTML = "Contact has been added";
-				window.location.href = "contact.html"; 
+		    window.location.href = "contact.html"; 
             }
         };
         xhr.send(jsonPayload);
     }
     catch(err)
     {
-        document.getElementById("contactAddResult").innerHTML = err.message;
+        //document.getElementById("contactAddResult").innerHTML = err.message;
     }
     
 }
