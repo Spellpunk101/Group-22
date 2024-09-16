@@ -148,7 +148,7 @@ function addContact()
     let newName = document.getElementById("nameText").value;
     let newPhone = document.getElementById("phoneText").value;
     let newEmail = document.getElementById("emailText").value;
-    document.getElementById("contactAddResult").innerHTML = "";
+    //document.getElementById("contactAddResult").innerHTML = "";
 
     let tmp = {name:newName, phone:newPhone, email:newEmail, userID:userID};
     let jsonPayload = JSON.stringify( tmp );
