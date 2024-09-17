@@ -57,7 +57,198 @@
     text-align: center;
 }
 
+.regular-text {
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
 .center-text {
     display: grid;
     place-items: center;
+}
+
+.button-yes {
+    background-color: green;
+    color: white;
+    border: none;
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    width: 100px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.button-yes:hover {
+    opacity: 0.85;
+}
+.button-yes:active {
+    opacity: 0.6;
+}
+
+.button-no {
+    background-color: blue;
+    color: white;
+    border: none;
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    width: 100px;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+.button-no:hover {
+    opacity: 0.85;
+}
+.button-no:active {
+    opacity: 0.6;
+}
+
+.popup {
+    width: 600px;
+    background: white;
+    border: solid;
+    border-radius: 10px;
+    border-color: black;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    padding: 0 30px, 30px;
+    visibility: hidden;
+}
+.open-popup {
+    visibility: visible;
+}
+.popup h2 {
+    font-family: "Segoe UI";
+    font-size: 40px;
+    margin-bottom: 10px;
+}
+.popup p {
+    font-family: "Segoe UI";
+    font-size: 20px;
+    margin-top: 0;
+    margin-bottom: 20px;
+    color: red;
+}
+
+body {
+    background-color: #daeaf6;
+}
+
+.square {
+    height: 320px;
+    width: 500px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.signup-square {
+    height: 520px;
+    width: 500px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.small-square {
+    height: 180px;
+    width: 500px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.your-account-square {
+    height: 220px;
+    width: 700px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.search-square {
+    height: 215px;
+    width: 700px;
+    background-color: white;
+    border: solid;
+    border-color: black;
+    border-radius: 20px;
+}
+
+.smaller-button {
+    background-color: black;
+    color: white;
+    display: block;
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-bottom: 15px;
+    height: 50px;
+    width: 300px;
+    border-style: solid;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: opacity 0.15s;
+}
+
+.smaller-button:hover {
+    opacity: 0.85;
+}
+
+.smaller-button:active {
+    opacity: 0.6;
+}
+
+.bigger-text {
+    font-family: "Segoe UI";
+    font-size: 50px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.long-input-bars {
+    display: block;
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-bottom: 15px;
+    height: 50px;
+    width: 600px;
+    border-radius: 50px;
+    border: solid;
+    justify-content: center;
+    text-align: center;
+}
+
+.textbox {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 700px;
+    height: 50px;
+    padding: 10px -10px 10px 10px;
+    font-family: "Segoe UI";
+    background-color: white;
+    border: solid black;
+    border-radius: 50px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    visibility: hidden;
+}
+.open-textbox {
+    visibility: visible;
 }
