@@ -146,7 +146,8 @@ body {
 }
 
 .square {
-    height: 320px;
+    display: block;
+    overflow: auto;
     width: 500px;
     background-color: white;
     border: solid;
@@ -155,7 +156,8 @@ body {
 }
 
 .signup-square {
-    height: 520px;
+    display: block;
+    overflow: auto;
     width: 500px;
     background-color: white;
     border: solid;
@@ -164,7 +166,8 @@ body {
 }
 
 .small-square {
-    height: 180px;
+    display: block;
+    overflow: auto;
     width: 500px;
     background-color: white;
     border: solid;
@@ -173,7 +176,8 @@ body {
 }
 
 .your-account-square {
-    height: 280px;
+    display: block;
+    overflow: auto;
     width: 700px;
     background-color: white;
     border: solid;
@@ -182,7 +186,8 @@ body {
 }
 
 .search-square {
-    height: 215px;
+    display: block;
+    overflow: auto;
     width: 700px;
     background-color: white;
     border: solid;
