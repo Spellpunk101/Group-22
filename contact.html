@@ -5,12 +5,17 @@
         <link href="css/styles.css" rel="stylesheet">	
         <link href="https://fonts.googleapis.com/css?family=Ubuntu" rel="stylesheet">
 	
-
-	    <script type="text/javascript">
-	        document.addEventListener('DOMContentLoaded', function() {
+	<script type="text/javascript">
+		document.addEventListener('DOMContentLoaded', function() {
 		        readCookie();
 	        }, false);
-	    </script>
+	</script>
+
+	<script>
+        	window.onload = function() {
+        	        document.getElementById('userName').innerHTML = firstName + " " + lastName;
+                };
+        </script>
     </head>
     <body>
         <h1 class="header">COP 4331 Small Project</h1>
@@ -18,8 +23,7 @@
             <div class="your-account-square">
                 <div class="center-text" id="loggedInDiv">
                     <h2 class="bigger-text">Your Account</h2>
-                    <p class="regular-text"><strong>Name:</strong> John Doe</p>
-                    <span id="userName"></span>
+                    <span id="userName" class="regular-text"></span>
                     <button class="smaller-button" id="logoutButton" onclick="doLogout();">Log Out</button>
                     <button class="smaller-button" onclick="window.location.href='addContact.html'">Add Contact</button>
                 </div>
@@ -30,8 +34,8 @@
                     <h2 class="bigger-text">Search Contacts</h2>
                     <input class="long-input-bars" type="text" id="searchText" placeholder="Search">
                     <button class="smaller-button" id="searchContactButton" onclick="searchContact();">Search</button><br />
-                    <span id="contactSearchResult"></span>
-	                <p id="contactList">
+                    <span id="contactSearchResult" class="regular-text"></span>
+	                <p id="contactList" class="regular-text"></p>p>
                 </div>
             </div>
 
