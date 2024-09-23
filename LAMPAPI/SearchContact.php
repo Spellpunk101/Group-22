@@ -12,7 +12,7 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("select Name from Contacts where Name like ? and UserID=?");
+		$stmt = $conn->prepare("select ID, Name, Phone, Email from Contacts where Name like ? and UserID=?");
 		$Name = "%" . $inData["search"] . "%";
 		$stmt->bind_param("ss", $Name, $inData["userId"]);
 		$stmt->execute();
@@ -26,7 +26,7 @@
 				$searchResults .= ",";
 			}
 			$searchCount++;
-			$searchResults .= '"' . $row["Name"] . '"' ;
+			$searchResults .= json_encode($row);
 		}
 		
 		if( $searchCount == 0 )
