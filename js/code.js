@@ -202,7 +202,8 @@ function searchContact()
 				
 				for( let i=0; i<jsonObject.results.length; i++ )
 				{
-					contactList += jsonObject.results[i];
+					let contact = jsonObject.results[i];
+					contactList += "[ID " + contact["ID"] + "] - " + contact["Name"] + " - Phone: " + contact["Phone"] + " - Email: " + contact["Email"];
 					if( i < jsonObject.results.length - 1 )
 					{
 						contactList += "<br />\r\n";
