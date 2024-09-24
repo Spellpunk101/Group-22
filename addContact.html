@@ -4,23 +4,24 @@
         <title>Small Project</title>
         <script type="text/javascript" src="js/code.js"></script>
         <link href="css/styles.css" rel="stylesheet">
-
-        <script type="text/javascript">
-	document.addEventListener('DOMContentLoaded', function() 
-	{
-	    readCookie();
-	}, false);
-	</script>
-        
     </head>
     <body>
         <h1 class="header">Contact Manager</h1>
-        <p class="inner-title">Add Contact</p>
         <div class="center-text">
-            <input id="nameText" class="input-bars" type="text" placeholder="Name">
-            <input id="phoneText" class="input-bars" type="text" placeholder="Phone Number">
-            <input id="emailText" class="input-bars" type="text" placeholder="Email">
-            <button id="addContactButton" class="buttons" onclick="addContact();">Add Contact</button>
+            <div class="add-contact-box">
+                <div class="center-text">
+                    <p class="inner-title">Add Contact</p>
+                    <input id="nameText" class="input-bars" type="text" placeholder="Name">
+                    <input id="phoneText" class="input-bars" type="text" placeholder="Phone Number">
+                    <input id="emailText" class="input-bars" type="text" placeholder="Email">
+                    <button class="buttons" onclick="openPopup();">Add Contact</button>
+                    <div class="popup" id="popup">
+                        <h2>Are you sure you want to add this contact?</h2>
+                        <button id="addContactButton" class="button-yes" onclick="addContact();">Yes</button>
+                        <button class="button-no" onclick="closePopup();">No</button>
+                    </div>
+                </div>
+            </div>
         </div>
         <script>
             let popup = document.getElementById("popup");
