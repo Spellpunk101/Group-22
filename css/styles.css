@@ -292,3 +292,12 @@ body {
     border-radius: 20px;
 
 }
+
+.red-text {
+    font-family: "Segoe UI";
+    font-size: 20px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+    color: red;
+}
