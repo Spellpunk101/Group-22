@@ -146,8 +146,9 @@ body {
 }
 
 .square {
-    display: block;
-    overflow: auto;
+    /*display: block;
+    overflow: auto;*/
+    height: 320px;
     width: 500px;
     background-color: white;
     border: solid;
@@ -156,8 +157,9 @@ body {
 }
 
 .signup-square {
-    display: block;
-    overflow: auto;
+    /*display: block;
+    overflow: auto;*/
+    height: 520px;
     width: 500px;
     background-color: white;
     border: solid;
@@ -166,8 +168,9 @@ body {
 }
 
 .small-square {
-    display: block;
-    overflow: auto;
+    /*display: block;
+    overflow: auto;*/
+    height: 180px;
     width: 500px;
     background-color: white;
     border: solid;
@@ -176,6 +179,7 @@ body {
 }
 
 .your-account-square {
+    /*height: 280px;*/
     display: block;
     overflow: auto;
     width: 700px;
@@ -186,8 +190,7 @@ body {
 }
 
 .search-square {
-    display: block;
-    overflow: auto;
+    height: 215px;
     width: 700px;
     background-color: white;
     border: solid;
@@ -256,4 +259,36 @@ body {
 }
 .open-textbox {
     visibility: visible;
+}
+
+.contact-box {
+    display: block;
+    overflow: auto;
+    width: 700px;
+    border: solid black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+
+}
+
+.contact-text {
+    font-family: "Segoe UI";
+    font-size: 30px;
+    margin-top: 0px;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.add-contact-box {
+    display: block;
+    overflow: auto;
+    width: 500px;
+    border: solid black;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    background-color: white;
+    border-radius: 20px;
+
 }
