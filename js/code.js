@@ -224,12 +224,10 @@ function searchContact()
 
 
 function deleteContact() {
-	let contactName = document.getElementById("nameText").value;
-    let contactPhone = document.getElementById("phoneText").value;
-    let contactEmail = document.getElementById("emailText").value;
+    let contactID = document.getElementById("idText").value;
     document.getElementById("contactDeleteResult").innerHTML = "";
-
-	let tmp = {name:contactName, phone:contactPhone, email:contactEmail};
+	
+    let tmp = {contactId:contactId, userId:userId};
     let jsonPayload = JSON.stringify( tmp );
 
 	let url = urlBase + '/DeleteContact.' + extension;
