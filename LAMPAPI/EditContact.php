@@ -21,8 +21,8 @@
 		$stmt->bind_param("ss", $contactId, $userId);
 		$stmt->execute();
 		
-		$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-		$stmt->bind_param("sssss", $contactId, $name, $phone, $email, $userId);
+		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
+		$stmt->bind_param("ssss", $name, $phone, $email, $userId);
 		$stmt->execute();
 		
 		$stmt->close();
