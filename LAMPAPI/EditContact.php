@@ -1,6 +1,7 @@
 <?php
 	$inData = getRequestInfo();
-	
+
+	$contactId = $inData["contactId"];
 	$name = $inData["name"];
 	$phone = $inData["phone"];
 	$email = $inData["email"];
@@ -13,8 +14,9 @@
 	} 
 	else
 	{
-		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $name, $phone, $email, $userId);
+		//$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
+		$stmt = $conn->prepare("REPLACE FROM Contacts WHERE ID=? AND UserID=? (Name, Phone, Email) VALUES(?,?,?)");
+		$stmt->bind_param("sss", $name, $phone, $email);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
