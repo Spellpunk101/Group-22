@@ -16,7 +16,7 @@
 	{
 		//$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
 		$stmt = $conn->prepare("REPLACE FROM Contacts WHERE ID=? AND UserID=? (Name, Phone, Email) VALUES(?,?,?)");
-		$stmt->bind_param("sss", $name, $phone, $email);
+		$stmt->bind_param("sssss", $contactId, $userId, $name, $phone, $email);
 		$stmt->execute();
 		$stmt->close();
 		$conn->close();
