@@ -15,7 +15,8 @@
 	else
 	{
 		$stmt = $conn->prepare("select Name, Phone, Email from Contacts where ID like ? and UserID=?");
-		$stmt->bind_param("ss", contactId, userId);
+		$cID = "%" . $inData["contactId"] . "%";
+		$stmt->bind_param("ss", $cID, $userId);
 		$stmt->execute();
 		
 		$result = $stmt->get_result();
