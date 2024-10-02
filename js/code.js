@@ -254,6 +254,41 @@ function deleteContact() {
     }
 }
 
+function addContact()
+{
+    let contactId = document.getElementById("idText").value;
+    let newName = document.getElementById("nameText").value;
+    let newPhone = document.getElementById("phoneText").value;
+    let newEmail = document.getElementById("emailText").value;
+    document.getElementById("contactDeleteResult").innerHTML = "";
+
+    let tmp = {contactId:contactId, name:newName, phone:newPhone, email:newEmail, userId:userId};
+    let jsonPayload = JSON.stringify( tmp );
+
+    let url = urlBase + '/EditContact.' + extension;
+    
+    let xhr = new XMLHttpRequest();
+    xhr.open("POST", url, true);
+    xhr.setRequestHeader("Content-type", "application/json; charset=UTF-8");
+    try
+    {
+        xhr.onreadystatechange = function() 
+        {
+            if (this.readyState == 4 && this.status == 200) 
+            {
+		    document.getElementById("contactDeleteResult").innerHTML = "Contact has been edited";
+		    //window.location.href = "contact.html"; 
+            }
+        };
+        xhr.send(jsonPayload);
+    }
+    catch(err)
+    {
+        //document.getElementById("contactAddResult").innerHTML = err.message;
+    }
+    
+}
+
 function addColor()
 {
 	let newColor = document.getElementById("colorText").value;
