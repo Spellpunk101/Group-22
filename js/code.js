@@ -254,7 +254,7 @@ function deleteContact() {
     }
 }
 
-function addContact()
+function editContact()
 {
     let contactId = document.getElementById("idText").value;
     let newName = document.getElementById("nameText").value;
