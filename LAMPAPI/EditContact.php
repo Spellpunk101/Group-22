@@ -14,6 +14,25 @@
 	} 
 	else
 	{
+		$stmt = $conn->prepare("select Name, Phone, Email from Contacts where ID like ? and UserID=?");
+		$stmt->bind_param("ss", contactId, userId);
+		$stmt->execute();
+		
+		$result = $stmt->get_result();
+		$contact = $result->fetch_assoc();
+		if($name == "")
+		{
+			$name = $contact["Name"];
+		}
+		if($phone == "")
+		{
+			$phone = $contact["Phone"];
+		}
+		if($email == "")
+		{
+			$email = $contact["Email"];
+		}
+		
 		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?");
 		$stmt->bind_param("ss", $contactId, $userId);
 		$stmt->execute();
