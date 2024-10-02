@@ -15,9 +15,16 @@
 	else
 	{
 		//$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-		$stmt = $conn->prepare("REPLACE FROM Contacts WHERE ID=? AND UserID=? (Name, Phone, Email) VALUES(?,?,?)");
-		$stmt->bind_param("sssss", $contactId, $userId, $name, $phone, $email);
+		//$stmt = $conn->prepare("REPLACE FROM Contacts WHERE ID=? AND UserID=? (Name, Phone, Email) VALUES(?,?,?)");
+		//$stmt->bind_param("sssss", $contactId, $userId, $name, $phone, $email);
+		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?");
+		$stmt->bind_param("ss", $contactId, $userId);
 		$stmt->execute();
+		
+		$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?)");
+		$stmt->bind_param("sssss", $contactId, $name, $phone, $email, $userId);
+		$stmt->execute();
+		
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
