@@ -224,7 +224,7 @@ function searchContact()
 
 
 function deleteContact() {
-    let contactID = document.getElementById("idText").value;
+    let contactId = document.getElementById("idText").value;
     document.getElementById("contactDeleteResult").innerHTML = "";
 	
     let tmp = {contactId:contactId, userId:userId};
