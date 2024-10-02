@@ -14,17 +14,49 @@
 	} 
 	else
 	{
-		//$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-		//$stmt = $conn->prepare("REPLACE FROM Contacts WHERE ID=? AND UserID=? (Name, Phone, Email) VALUES(?,?,?)");
-		//$stmt->bind_param("sssss", $contactId, $userId, $name, $phone, $email);
-		$stmt = $conn->prepare("DELETE FROM Contacts WHERE ID=? AND UserID=?");
-		$stmt->bind_param("ss", $contactId, $userId);
-		$stmt->execute();
+		if($name == "")
+		{
+			if($phone == "")
+			{
+				$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Name=VALUES(?) Phone=VALUES(?) UserID=VALUES(?)");
+				$stmt->bind_param("ssssssss", $contactId, $name, $phone, $email, $userId, $name, $phone, $userId);
+			}
+			else if($email == "")
+			{
+				$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Name=VALUES(?) Email=VALUES(?) UserID=VALUES(?)");
+				$stmt->bind_param("ssssssss", $contactId, $name, $phone, $email, $userId, $name, $email, $userId);
+			}
+			else
+			{
+				$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Name=VALUES(?) UserID=VALUES(?)");
+				$stmt->bind_param("sssssss", $contactId, $name, $phone, $email, $userId, $name, $userId);
+			}
+		}
+		else if($phone == "")
+		{
+			if($email == "")
+			{
+				$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Phone=VALUES(?) Email=VALUES(?) UserID=VALUES(?)");
+				$stmt->bind_param("ssssssss", $contactId, $name, $phone, $email, $userId, $phone, $email, $userId);
+			}
+			else
+			{
+				$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Phone=VALUES(?) UserID=VALUES(?)");
+				$stmt->bind_param("sssssss", $contactId, $name, $phone, $email, $userId, $phone, $userId);
+			}
+		}
+		else if($email == "")
+		{
+			$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Email=VALUES(?) UserID=VALUES(?)");
+			$stmt->bind_param("sssssss", $contactId, $name, $phone, $email, $userId, $email, $userId);
+		}
+		else
+		{
+			$stmt = $conn->prepare("INSERT into Contacts (ID, Name, Phone, Email, UserID) VALUES(?,?,?,?,?) On DUPLICATE KEY UPDATE Name=VALUES(?) Phone=VALUES(?) Email=VALUES(?) UserID=VALUES(?)");
+			$stmt->bind_param("sssssssss", $contactId, $name, $phone, $email, $userId, $name, $phone, $email, $userId);
+		}
 		
-		$stmt = $conn->prepare("INSERT into Contacts (Name, Phone, Email, UserID) VALUES(?,?,?,?)");
-		$stmt->bind_param("ssss", $name, $phone, $email, $userId);
 		$stmt->execute();
-		
 		$stmt->close();
 		$conn->close();
 		returnWithError("");
